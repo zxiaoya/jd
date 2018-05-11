@@ -1,7 +1,6 @@
 package com.jd.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jd.model;
 import com.jd.model.Pager;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -83,7 +82,7 @@ public class HttpUtilRequest {
 	public static Pager get(String url) {
 		return req(commonHeaders(), null, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
-	public static model.HttpUtilNewPage get(String url, List<Cookie> cookies) {
+	public static Pager get(String url, List<Cookie> cookies) {
 		return req(commonHeaders(), cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	public static List<Cookie> MergeCookies(List<Cookie> current_cookies, final List<Cookie> new_cookies)
@@ -120,11 +119,11 @@ public class HttpUtilRequest {
 		return current_cookies;
 	}
 	
-	public static model.HttpUtilNewPage get(String url, boolean ignoreTrustCert) {
+	public static Pager get(String url, boolean ignoreTrustCert) {
 		return req(commonHeaders(), null, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
-	public static model.HttpUtilNewPage get(String url, int retType, boolean ignoreTrustCert) {
+	public static Pager get(String url, int retType, boolean ignoreTrustCert) {
 		return req(null, null, REQ_TYPE_GET, null, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
@@ -132,11 +131,11 @@ public class HttpUtilRequest {
 		return req(headers, null, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, String url, boolean ignoreTrustCert) {
+	public static Pager get(Map<String, String> headers, String url, boolean ignoreTrustCert) {
 		return req(headers, null, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
-	public static model.HttpUtilNewPage get(List<Cookie> cookies, String url, boolean ignoreTrustCert) {
+	public static Pager get(List<Cookie> cookies, String url, boolean ignoreTrustCert) {
 		return req(commonHeaders(), cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
@@ -144,118 +143,118 @@ public class HttpUtilRequest {
 		return req(headers, null, REQ_TYPE_GET, null, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 
-	public static model.HttpUtilNewPage get(Map<String, String> headers, String url, int retType, boolean ignoreTrustCert) {
+	public static Pager get(Map<String, String> headers, String url, int retType, boolean ignoreTrustCert) {
 		return req(headers, null, REQ_TYPE_GET, null, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url, int retType, boolean ignoreTrustCert) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url, int retType, boolean ignoreTrustCert) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
-	public static model.HttpUtilNewPage get(NameValuePair[] nvps, String url) {
+	public static Pager get(NameValuePair[] nvps, String url) {
 		return req(commonHeaders(), null, REQ_TYPE_GET, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, NameValuePair[] nvps, String url) {
+	public static Pager get(Map<String, String> headers, NameValuePair[] nvps, String url) {
 		return req(headers, null, REQ_TYPE_GET, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, NameValuePair[] nvps, String url, boolean ignoreTrustCert) {
+	public static Pager get(Map<String, String> headers, NameValuePair[] nvps, String url, boolean ignoreTrustCert) {
 		return req(headers, null, REQ_TYPE_GET, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url, String charset) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url, String charset) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, charset, false);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url, String charset, boolean ignoreAllCert) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url, String charset, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, charset, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url, double reqType, String charset, boolean ignoreAllCert) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url, double reqType, String charset, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, reqType, charset, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqType, String charset, boolean ignoreAllCert) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqType, String charset, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_GET, nvps, url, GET_HTML, reqType, charset, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage getGB2312(Map<String, String> headers, List<Cookie> cookies, String url) {
+	public static Pager getGB2312(Map<String, String> headers, List<Cookie> cookies, String url) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_GBK2312, false);
 	}
-	public static model.HttpUtilNewPage getGB2312(Map<String, String> headers, List<Cookie> cookies, String url, boolean ignoreAllCert) 	{
+	public static Pager getGB2312(Map<String, String> headers, List<Cookie> cookies, String url, boolean ignoreAllCert) 	{
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_GBK2312, ignoreAllCert);
 	}
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url, boolean ignoreTrustCert) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url, boolean ignoreTrustCert) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, String url, int retType) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, String url, int retType) {
 		return req(headers, cookies, REQ_TYPE_GET, null, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url) {
 		return req(headers, cookies, REQ_TYPE_GET, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage get(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, int retType) {
+	public static Pager get(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, int retType) {
 		return req(headers, cookies, REQ_TYPE_GET, nvps, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(String url) {
+	public static Pager post(String url) {
 		return req(commonHeaders(), null, REQ_TYPE_POST, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(String url, boolean ignoreAllCert) {
+	public static Pager post(String url, boolean ignoreAllCert) {
 		return req(commonHeaders(), null, REQ_TYPE_POST, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage post(String url, NameValuePair[] nvps) {
+	public static Pager post(String url, NameValuePair[] nvps) {
 		return req(commonHeaders(), null, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, String url) {
+	public static Pager post(Map<String, String> headers, String url) {
 		return req(headers, null, REQ_TYPE_POST, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, String url) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, String url) {
 		return req(headers, cookies, REQ_TYPE_POST, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, String url, boolean ignoreAllCert) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, String url, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_POST, null, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreAllCert);
 	}
-	public static model.HttpUtilNewPage post(Map<String, String> headers, NameValuePair[] nvps, String url) {
+	public static Pager post(Map<String, String> headers, NameValuePair[] nvps, String url) {
 		return req(headers, null, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, String url, int retType) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, String url, int retType) {
 		return req(headers, cookies, REQ_TYPE_POST, null, url, retType, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, NameValuePair[] nvps, String url, double reqParamType, boolean ignoreAllCert) {
+	public static Pager post(Map<String, String> headers, NameValuePair[] nvps, String url, double reqParamType, boolean ignoreAllCert) {
 		return req(headers, null, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, CHARSET_UTF8, ignoreAllCert);
 	}
 
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, false);
 	}
 
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, boolean ignoreAllCert) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreAllCert);
 	}
 
-	public static model.HttpUtilNewPage postGBK(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url) {
+	public static Pager postGBK(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_GBK, false);
 	}
 
-	public static model.HttpUtilNewPage postGBK(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, boolean ignoreAllCert) {
+	public static Pager postGBK(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_GBK, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, NameValuePair[] nvps, String url, double reqParamType) {
+	public static Pager post(Map<String, String> headers, NameValuePair[] nvps, String url, double reqParamType) {
 		return req(headers, null, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, CHARSET_UTF8, false);
 	}
 	
@@ -263,39 +262,39 @@ public class HttpUtilRequest {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, CHARSET_UTF8, false);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType, boolean ignoreAllCert) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, CHARSET_UTF8, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType, String charset, boolean ignoreAllCert) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType, String charset, boolean ignoreAllCert) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, charset, ignoreAllCert);
 	}
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType, String charset) {
+	public static Pager post(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType, String charset) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, charset, false);
 	}
 
-	public static model.HttpUtilNewPage postWithGB2312(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType) {
+	public static Pager postWithGB2312(Map<String, String> headers, List<Cookie> cookies, NameValuePair[] nvps, String url, double reqParamType) {
 		return req(headers, cookies, REQ_TYPE_POST, nvps, url, GET_HTML, reqParamType, CHARSET_GBK2312, false);
 	}
 
 	
-	public static model.HttpUtilNewPage post(Map<String, String> headers, NameValuePair[] nvps, String url, boolean ignoreTrustCert) {
+	public static Pager post(Map<String, String> headers, NameValuePair[] nvps, String url, boolean ignoreTrustCert) {
 		return req(headers, null, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, CHARSET_UTF8, ignoreTrustCert);
 	}
-	public static model.HttpUtilNewPage post(Map<String, String> headers, NameValuePair[] nvps, String url, String charset, boolean ignoreTrustCert) {
+	public static Pager post(Map<String, String> headers, NameValuePair[] nvps, String url, String charset, boolean ignoreTrustCert) {
 		return req(headers, null, REQ_TYPE_POST, nvps, url, GET_HTML, REQ_PARAMS_ARRAY, charset, ignoreTrustCert);
 	}
-	public static model.HttpUtilNewPage get(Map<String, String> headers, String url, String charset, boolean ignoreAllCert) {
+	public static Pager get(Map<String, String> headers, String url, String charset, boolean ignoreAllCert) {
 		return req(headers, null, REQ_TYPE_GET, null, url, GET_HTML, REQ_PARAMS_ARRAY, charset, ignoreAllCert);
 	}
-	public static model.HttpUtilNewPage req(Map<String, String> headers,
-											List<Cookie> cookies, String reqType,
-											NameValuePair[] nvps,
-											String url, int retType,
-											double reqParamType,
-											String charset,
-											boolean ignoreAllCert) {
+	public static Pager req(Map<String, String> headers,
+							List<Cookie> cookies, String reqType,
+							NameValuePair[] nvps,
+							String url, int retType,
+							double reqParamType,
+							String charset,
+							boolean ignoreAllCert) {
 		
 		// 请求方式
 		RequestBuilder req = RequestBuilder.get();
@@ -352,7 +351,7 @@ public class HttpUtilRequest {
 //        		i ++;
 //        	}
         	
-        	model.HttpUtilNewPage ret = new model.HttpUtilNewPage();
+        	Pager ret = new Pager();
         	ret.setHeaders(httpResponse.getAllHeaders());
         	ret.setCookies(context.getCookieStore().getCookies());
         	if(retType == GET_STREAM) {
