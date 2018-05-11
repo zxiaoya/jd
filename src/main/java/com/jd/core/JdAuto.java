@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.jd.utils.Picture.NORM_DATETIME_PATTERN;
 import static java.util.regex.Pattern.compile;
 
 /**
@@ -33,8 +34,18 @@ public class JdAuto {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(JdAuto.class);
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        String pid = "4079304";
-        login(pid);
+        String pid = "5396295";
+        String start_time = "18:00";
+
+        while (true) {
+            Long m = Picture.dateDiff( "2018-05-11 18:05:00", NORM_DATETIME_PATTERN, "s");
+            if (m <=0) {
+                login(pid);
+                break;
+            }
+        }
+
+
     }
 
     private static void login(String pid) throws IOException, InterruptedException {
@@ -97,7 +108,6 @@ public class JdAuto {
                 //请在手机确认
                 if ("202".equals(qrCode))
                 {
-                    Picture.shutdown();
                     System.out.println("qrMsg = " + qrMsg);
                 }
                 //扫码成功
@@ -120,6 +130,7 @@ public class JdAuto {
                     headers.put("Referer", "https://item.jd.com/" + pid + ".html");
 
                     LOGGER.info(String.format("正在查找商品编号 %s 的商品", pid));
+                    JOptionPane.showMessageDialog(null, String.format("正在查找商品编号 %s 的商品", pid), "第一步", JOptionPane.ERROR_MESSAGE);
                     Pager addCart302 = HttpUtilRequest.get(headers, "https://cart.jd.com/gate.action?pid=" + pid + "&pcount=1&ptype=1");
                     int statusCode = addCart302.getStatusCode();
                     if (statusCode == 302)
@@ -135,6 +146,7 @@ public class JdAuto {
                         if (document.toString().contains("商品已成功加入购物车") && "1".equals(rcd))
                         {
                             sleep(2);
+                            JOptionPane.showMessageDialog(null, String.format("商品已成功加入购物车"), "第二步", JOptionPane.ERROR_MESSAGE);
                             LOGGER.debug("商品已成功加入购物车");
                         }
                         else
@@ -145,13 +157,13 @@ public class JdAuto {
                         }
 
                         Pager orderListPage = HttpUtilRequest.get(headers, "https://cart.jd.com/cart.action?r=" + Math.random());
-                        System.out.println("orderListPage = " + orderListPage.getHtml().contains("游戏办机械键盘"));
 
                         HttpUtilRequest.addCookieFromSetCookieHeader(cookies, orderListPage.getHeaders());
 
                         curCookie = HttpUtilRequest.createHeaderCookie(cookies);
                         headers.put("Cookie", curCookie);
                         LOGGER.info("正在准备为您创建订单");
+                        JOptionPane.showMessageDialog(null, "正在准备为您创建订单", "第三步", JOptionPane.ERROR_MESSAGE);
                         Pager orderinfopage302 = HttpUtilRequest.get(headers, "https://cart.jd.com/gotoOrder.action?rd=" + Math.random());
 
                         int statusCode1 = orderinfopage302.getStatusCode();
@@ -173,6 +185,7 @@ public class JdAuto {
 
                                 if (StringUtils.isNotEmpty(riskControl))
                                 {
+                                    JOptionPane.showMessageDialog(null, "订单页面加载完毕,准备下单", "第四步", JOptionPane.ERROR_MESSAGE);
                                     LOGGER.debug("订单页面加载完毕,准备下单");
                                 }
                                 else
@@ -212,6 +225,8 @@ public class JdAuto {
 
                                 if ("true".equals(success))
                                 {
+                                    JOptionPane.showMessageDialog(null, "下单成功,请去手机APP或京东官方网站支付", "第五步", JOptionPane.ERROR_MESSAGE);
+                                    Picture.shutdown();
                                     LOGGER.info("下单成功,请去手机APP或京东官方网站支付");
                                 }
                                 else
@@ -223,6 +238,10 @@ public class JdAuto {
                             } catch (Exception e)
                             {
                                 e.printStackTrace();
+                            }
+                            finally
+                            {
+                                Picture.shutdown();
                             }
                         }
                         else
