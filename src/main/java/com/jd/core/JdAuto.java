@@ -1,8 +1,9 @@
 package com.jd.core;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jd.utils.HttpUtilRequest;
 import com.jd.model.Pager;
+import com.jd.utils.HttpUtilRequest;
+import com.jd.utils.Picture;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.cookie.Cookie;
@@ -59,7 +60,10 @@ public class JdAuto {
                 token = cookie.getValue();
             }
         }
-        FileUtils.writeByteArrayToFile(new File("D://QR.png"), bytes);
+        File file = new File("D://QR.png");
+        FileUtils.writeByteArrayToFile(file, bytes);
+
+        Picture picture = new Picture(file.getPath(),60);
 
         if (StringUtils.isEmpty(token))
         {
@@ -93,6 +97,7 @@ public class JdAuto {
                 //请在手机确认
                 if ("202".equals(qrCode))
                 {
+                    Picture.shutdown();
                     System.out.println("qrMsg = " + qrMsg);
                 }
                 //扫码成功
